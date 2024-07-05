@@ -45,33 +45,53 @@ public class BootstrapData implements CommandLineRunner {
 		Publisher tree = new Publisher("Old Tree Editions", "East Road", "Cambridge", "England", 28678);
 		Publisher volt = new Publisher("Voltage Books", "Downhill Road", "Oxford", "England", 29008);
 		
+		// Save repositories
+		authorRepository.save(john);
+		authorRepository.save(chris);
+		bookRepository.save(a);
+		bookRepository.save(b);
+		bookRepository.save(c);
+		bookRepository.save(d);
+		bookRepository.save(e);
+		publisherRepository.save(tree);
+		publisherRepository.save(volt);
+		
+		// Add books to authors
 		john.getBooks().add(d);
 		john.getBooks().add(b);
 		john.getBooks().add(c);
 		john.getBooks().add(e);
 		john.getBooks().add(a);
-
+		chris.getBooks().add(a);
+		
+		// Add authors to books
 		a.getAuthors().add(john);
 		b.getAuthors().add(john);
 		c.getAuthors().add(john);
 		d.getAuthors().add(john);
 		e.getAuthors().add(john);
+		a.getAuthors().add(chris);
 		
+		// Add Publishers to books
+		a.setPublisher(tree);
+		b.setPublisher(tree);
+		c.setPublisher(tree);
+		d.setPublisher(tree);
+		e.setPublisher(tree);
+		
+		// Add authors to publishers
 		tree.getAuthors_p().add(john);
 		tree.getAuthors_p().add(chris);
+		volt.getAuthors_p().add(chris);
+		
+		// Add books to publishers
 		tree.getBooks_p().add(a);
 		tree.getBooks_p().add(b);
 		tree.getBooks_p().add(c);
 		tree.getBooks_p().add(d);
-		tree.getBooks_p().add(e);
+		tree.getBooks_p().add(e);		
 		
-		volt.getAuthors_p().add(chris);
-		
-		
-		chris.getBooks().add(a);
-		
-		a.getAuthors().add(chris);
-		
+		// Save repositories
 		authorRepository.save(john);
 		authorRepository.save(chris);
 		bookRepository.save(a);

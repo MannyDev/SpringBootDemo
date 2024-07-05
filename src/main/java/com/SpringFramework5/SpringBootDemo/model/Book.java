@@ -24,12 +24,13 @@ public class Book {
 	private String isbn;
 	
 	@ManyToOne
+	@JoinColumn(name = "publisher_id")
 	private Publisher publisher;
 	
 	@ManyToMany
 	@JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
 			inverseJoinColumns = @JoinColumn(name = "author_id"))
-	private Set<Author> authors = new HashSet<Author>();
+	private Set<Author> authors = new HashSet<>();
 	
 	public Book() {}
 	
@@ -85,8 +86,7 @@ public class Book {
 	public String toString() {
 		return "Book [id=" + id + 
 				", title=" + title + 
-				", isbn=" + isbn + 
-				", authors=" + authors + "]";
+				", isbn=" + isbn + "]";
 	}
 
 	@Override

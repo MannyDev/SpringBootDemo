@@ -29,11 +29,10 @@ public class Publisher {
 	@ManyToMany
 	@JoinTable(name = "author_publisher", joinColumns = @JoinColumn(name = "publisher_id"),
 			inverseJoinColumns = @JoinColumn(name = "author_id"))
-	private Set<Author> authors_p = new HashSet<Author>();
+	private Set<Author> authors_p = new HashSet<>();
 	
-	@OneToMany
-	@JoinColumn(name = "publisher_id")
-	private Set<Book> books_p = new HashSet<Book>();
+	@OneToMany(mappedBy = "publisher")
+	private Set<Book> books_p = new HashSet<>();
 	
 	public Publisher() {}
 
